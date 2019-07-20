@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "form-data": "^2.3.3",
+    "helmet": "^3.18.0",
+    "node-blob": "0.0.2",
+    "storyblok-js-client": "^1.0.25"
+  }
+}
