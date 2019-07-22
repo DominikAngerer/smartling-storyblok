@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <template v-if="action && story">
+    <template v-if="action">
       <component :is="action" :api="api" :current="current" :story="story" 
         :handle-error="handleError" :clear-errors="clearErrors"/>
     </template>

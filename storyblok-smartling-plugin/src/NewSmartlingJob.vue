@@ -23,7 +23,6 @@
             <input
               type="checkbox"
               name="storyblokLocales"
-              disabled="true"
               checked="checked"
               :value="locale"
             />
