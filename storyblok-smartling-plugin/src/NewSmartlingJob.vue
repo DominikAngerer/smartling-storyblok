@@ -40,8 +40,9 @@
         </div>
         <div class="uk-width-1-2">
           <button class="uk-button uk-width-1-1 uk-button-primary" @click.prevent="createSmartlingJob" :disabled="!readyToSubmit">
-            <span v-if="!creatingSmartlingJob">Create Job</span>
+            <span v-if="!creatingSmartlingJob && !uploadToSmartling">Create Job</span>
             <span v-if="creatingSmartlingJob">Creating ...</span>
+            <span v-if="uploadToSmartling">Uploading ...</span>
           </button>
         </div>
       </div>
@@ -57,6 +58,7 @@ export default {
   props: {
     api: Object,
     current: Object,
+    story: Object,
     handleError: Function,
     clearErrors: Function
   },
@@ -72,8 +74,7 @@ export default {
       loadingStoryblokLocales: false,
       creatingSmartlingJob: false,
       uploadToSmartling: false,
-      smartlingJobId: '',
-      story: null
+      smartlingJobId: ''
     }
   },
   computed: {
@@ -125,8 +126,8 @@ export default {
     addToSmartlingJob() {
       let translationRequestObject = {
         space_id: this.current.spaceId,
-        story_id: this.current.story.id,
-        full_slug: this.current.story.full_slug,
+        story_id: this.story.id,
+        full_slug: this.story.full_slug,
         smartling_translation_job_uid: this.smartlingJobId
       }
 

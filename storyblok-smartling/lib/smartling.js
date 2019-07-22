@@ -48,8 +48,8 @@ class Smartling {
     form.append('file', file, fileName)
     form.append('fileUri', fileUri)
     form.append('fileType', fileType)
+    form.append('authorize', 'true')
     form.append('callbackUrl', callbackUrl)
-    // form.append('authorize', authorize)
     
     let headers = form.getHeaders()
     headers['Authorization'] = this.client.defaults.headers.Authorization

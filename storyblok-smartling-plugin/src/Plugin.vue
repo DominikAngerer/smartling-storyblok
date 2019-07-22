@@ -13,8 +13,8 @@
       </div>
     </div>
 
-    <template v-if="action">
-      <component :is="action" :api="api" :current="current" 
+    <template v-if="action && story">
+      <component :is="action" :api="api" :current="current" :story="story" 
         :handle-error="handleError" :clear-errors="clearErrors"/>
     </template>
 
@@ -37,7 +37,6 @@ export default {
   computed: {
     current() {
       return {
-        story: this.story,
         spaceId: this.spaceId
       }
     }
@@ -56,7 +55,8 @@ export default {
       this.loadCurrentStory()
     },
     loadCurrentStory() {
-      this.api.get(`cdn/stories/${this.storyId}`).then(res => {
+      this.api.get(`cdn/stories/${this.storyId}`, {version:'draft'}).then(res => {
+        this.story = res.data.story
         this.story = res.data.story
       })
       .catch(err => this.handleError(err, `Couldn't load current Story.`))
